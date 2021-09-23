@@ -1,0 +1,213 @@
+m255
+K4
+z2
+!s11f vlog 2020.3 2020.07, Jul 22 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dE:/file/Study/Lab/Ibex
+vfifo
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1631338449
+!i10b 1
+!s100 3P=ZbWI6Hzg9177mNBWeh3
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I`CK@;FPA:YaAHh6I`0;Ne1
+S1
+Z3 dE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw
+w1631338345
+8E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo.sv
+FE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo.sv
+!i122 0
+L0 6 30
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OV;L;2020.3;71
+r1
+!s85 0
+31
+Z6 !s108 1631338449.000000
+!s107 E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo.sv|
+!i113 1
+Z7 o-work work -sv
+Z8 tCvgOpt 0
+vfifo_tb
+R0
+R1
+!i10b 1
+!s100 J`J:jF?4e0c>Y]JOTf_U00
+R2
+IZDlX[?PgnLzn85l9`]Sl_0
+S1
+R3
+w1631338360
+8E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo_tb.sv
+FE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo_tb.sv
+!i122 1
+L0 3 95
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo_tb.sv|
+!i113 1
+R7
+R8
+vsystolic_array
+R0
+!s110 1632179849
+!i10b 1
+!s100 E4^?_ISWC[b6bKkhLcSk=2
+R2
+If853VnNJAhjiV3_z`Z?`01
+S1
+R3
+w1632179847
+8E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array.sv
+FE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array.sv
+!i122 22
+L0 6 53
+R4
+R5
+r1
+!s85 0
+31
+!s108 1632179849.000000
+!s107 E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array.sv|
+!i113 1
+R7
+R8
+vsystolic_array_tb
+R0
+DXx4 work 25 systolic_array_tb_sv_unit 0 22 TkgJ^>Un]LdACi?327[F50
+Z9 !s110 1632175429
+R4
+r1
+!s85 0
+!i10b 1
+!s100 B2fU3f[EFF_TKjU9HgVXZ1
+IR:=LO;5AcKd3bQlCZa<ID3
+!s105 systolic_array_tb_sv_unit
+S1
+R3
+w1632175407
+Z10 8E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv
+Z11 FE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv
+!i122 10
+L0 5 157
+R5
+31
+Z12 !s108 1632175429.000000
+Z13 !s107 systolic_array_tc.svh|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv|
+Z14 !s90 -reportprogress|300|-work|work|-sv|-stats=none|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv|
+!i113 1
+R7
+R8
+Xsystolic_array_tb_sv_unit
+R0
+R9
+VTkgJ^>Un]LdACi?327[F50
+r1
+!s85 0
+!i10b 1
+!s100 0amH2P<?PBI3>X;_<LfUb3
+ITkgJ^>Un]LdACi?327[F50
+!i103 1
+S1
+R3
+Z15 w1632175408
+R10
+R11
+Fsystolic_array_tc.svh
+!i122 10
+Z16 L0 3 0
+R5
+31
+R12
+R13
+R14
+!i113 1
+R7
+R8
+Xsystolic_array_tc_svh_unit
+R0
+R9
+VlRnRG<f]?KWfV@h>oo0k11
+r1
+!s85 0
+!i10b 1
+!s100 <W]jk^b0E5D;X4enaL<f<1
+IlRnRG<f]?KWfV@h>oo0k11
+!i103 1
+S1
+R3
+R15
+8E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tc.svh
+FE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tc.svh
+!i122 9
+R16
+R5
+31
+R12
+!s107 E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tc.svh|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tc.svh|
+!i113 1
+R7
+R8
+vtpumac
+R0
+!s110 1632179048
+!i10b 1
+!s100 P:TelX`Y0?Bb3?DcOh]nc0
+R2
+I27E:KiD;;]P1LEOJiTckG3
+S1
+R3
+w1632179043
+8E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac.sv
+FE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac.sv
+!i122 18
+L0 3 32
+R4
+R5
+r1
+!s85 0
+31
+!s108 1632179048.000000
+!s107 E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac.sv|
+!i113 1
+R7
+R8
+vtpumac_tb
+R0
+!s110 1631673569
+!i10b 1
+!s100 KN7eOheU@j=6T02:P3=;10
+R2
+IoZ;^Z8dR@hcoXoBHAn_KN2
+S1
+R3
+w1631673564
+8E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac_tb.sv
+FE:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac_tb.sv
+!i122 8
+L0 2 66
+R4
+R5
+r1
+!s85 0
+31
+!s108 1631673569.000000
+!s107 E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac_tb.sv|
+!i113 1
+R7
+R8

@@ -1,0 +1,70 @@
+E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array.sv {1 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module systolic_array
+
+Top level modules:
+	systolic_array
+
+} {} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo.sv {1 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module fifo
+
+Top level modules:
+	fifo
+
+} {} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_std_afu.sv {0 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_std_afu.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+** Error: E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_std_afu.sv(34): Cannot open `include file "platform_if.vh".
+-- Compiling module ccip_std_afu
+** Error: (vlog-13069) E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_std_afu.sv(50): near "pck_cp2af_sRx": syntax error, unexpected IDENTIFIER, expecting ')'.
+
+} {3.0 4.0 5.0 6.0} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_interface_reg.sv {0 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_interface_reg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+** Error: E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_interface_reg.sv(37): (vlog-13006) Could not find the package (ccip_if_pkg).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
+** Error: (vlog-13069) E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/ccip_interface_reg.sv(45): near "pck_cp2af_sRx_T0": syntax error, unexpected IDENTIFIER, expecting ')'.
+
+} {3.0 5.0} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/afu.sv {0 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/afu.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+** Error: E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/afu.sv(43): Cannot open `include file "platform_if.vh".
+** Error: E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/afu.sv(44): Cannot open `include file "afu_json_info.vh".
+-- Compiling module afu
+** Error: (vlog-13069) E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/afu.sv(53): near "rx": syntax error, unexpected IDENTIFIER, expecting ')'.
+** Error: E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/afu.sv(62): (vlog-2163) Macro `AFU_ACCEL_UUID is undefined.
+
+} {3.0 5.0 6.0 8.0} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv {1 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling package systolic_array_tb_sv_unit
+-- Compiling module systolic_array_tb
+
+Top level modules:
+	systolic_array_tb
+
+} {} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo_tb.sv {1 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/fifo_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module fifo_tb
+
+Top level modules:
+	fifo_tb
+
+} {} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac.sv {1 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module tpumac
+
+Top level modules:
+	tpumac
+
+} {} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tc.svh {1 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tc.svh
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling package systolic_array_tc_svh_unit
+
+Top level modules:
+	--none--
+
+} {} {}} E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac_tb.sv {1 {vlog -work work -sv -stats=none E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/tpumac_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module tpumac_tb
+
+Top level modules:
+	tpumac_tb
+
+} {} {}}

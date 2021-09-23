@@ -1,0 +1,24 @@
+run -all
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# No errors, testcase passed
+# 
+# ** Note: $stop    : E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv(158)
+#    Time: 6105 ps  Iteration: 1  Instance: /systolic_array_tb
+# Break in Module systolic_array_tb at E:/file/Study/ECE554/ece554_miniproject/ccip_mmio/hw/systolic_array_tb.sv line 158
