@@ -2,6 +2,7 @@
 // Implements delay buffer (fifo)
 // On reset all entries are set to 0
 // Shift causes fifo to shift out oldest entry to q, shift in d
+// Unsyncronized rst
 
 module fifo
   #(
