@@ -27,7 +27,7 @@ module systolic_array
     generate
     for (i = 0; i < DIM; ++i) begin
         for (j = 0; j < DIM; ++j) begin
-            tpumac TPUMAC(
+            tpumac #(BITS_AB,BITS_C) TPUMAC(
                 .clk(clk),
 		        .rst_n(rst_n),
 		        .WrEn(WrEnRow[i]),
