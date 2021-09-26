@@ -9,18 +9,38 @@ module memA
     input [$clog2(DIM)-1:0] Arow,
     output logic signed [BITS_AB-1:0] Aout [DIM-1:0]
    );
-
+    integer counter;
+    logic signed [BITS_AB-1:0] Atmp [DIM-1:0];
    genvar i;
    generate
-     for (i = 0; i < DIM; ++i) begin
+     for (i = 1; i < DIM; ++i) begin
        transpose_fifo #(DIM,BITS_AB) T_FIFO(
          .clk(clk),
          .rst_n(rst_n),
-         .en(en),
+         .en(en & counter >= i), // maybe add !WrEn
          .wr(WrEn & Arow == i), //select one row to update
          .row(Ain),
-         .q(Aout[i])
+         .q(Atmp[i])
        );
      end
    endgenerate
+
+   always@(posedge clk, negedge rst_n) begin
+     if (!rst_n) begin
+       counter <= 0;
+     end
+     if (WrEn) begin
+       counter <=0;
+     end
+     else if (en) begin
+       counter <= counter + 1;
+     end
+   end
+
+   always_comb begin
+     Aout[0] = Atmp[0];
+     for (integer j = 1; j < DIM; j++) begin
+       Aout[j] = counter >= j? Atmp[j]:0;
+     end
+   end
    endmodule

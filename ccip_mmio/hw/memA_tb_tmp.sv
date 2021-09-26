@@ -1,6 +1,6 @@
 
 
-module memA_tb();
+module memA_tb_tmp();
   parameter BITS_AB = 8;
   parameter BITS_C = 16;
   parameter DIM = 8;
@@ -23,17 +23,17 @@ en = 0;
 WrEn =0;
 @(negedge clk);
 rst_n = 1;
-en = 1;
 
 for (integer i = 0; i < DIM; i++)begin
 	for (integer j = 0; j < DIM; j++)begin
-	Ain[j] = i + j + 1;
-	$display("Aout[%d]: %d, ",j, Aout[j]);
+	Ain[j] = $random;
 end
 WrEn = 1;
 Arow = i;
 @(negedge clk);
 end
+
+en = 1;
 WrEn = 0;
 for (integer i = 0; i < DIM; i++)begin
 @(negedge clk);

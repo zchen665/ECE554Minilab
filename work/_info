@@ -1,0 +1,395 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/Softwares
+vfifo
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1632696332
+!i10b 1
+!s100 MghF@DU58dP1bakP?>Q[`1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IDSceaUlMWIL8GI=`8GdHE3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z4 dD:/Documents/Modelsim/ECE554Minilab
+Z5 w1632595504
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo.sv
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo.sv
+!i122 17
+L0 7 30
+Z6 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z7 !s108 1632696332.000000
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo.sv|
+!i113 1
+Z8 o-work work -sv
+Z9 tCvgOpt 0
+vfifo_tb
+R0
+R1
+!i10b 1
+!s100 J`J:jF?4e0c>Y]JOTf_U00
+R2
+IfZ=B>_jBSE[@]:H6g5AdW2
+R3
+S1
+R4
+R5
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo_tb.sv
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo_tb.sv
+!i122 18
+L0 3 95
+R6
+r1
+!s85 0
+31
+R7
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fifo_tb.sv|
+!i113 1
+R8
+R9
+vfiforst
+R0
+Z10 !s110 1632696333
+!i10b 1
+!s100 hE0I3MDhkOK_8`Se:1@hQ0
+R2
+ILCdSTV]9aS^JFX05DiT_81
+R3
+S1
+R4
+R5
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fiforst.sv
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fiforst.sv
+!i122 19
+L0 7 35
+R6
+r1
+!s85 0
+31
+R7
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fiforst.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/fiforst.sv|
+!i113 1
+R8
+R9
+vmemA
+R0
+!s110 1632697193
+!i10b 1
+!s100 7L[2EP9zODK1EHJ7720=e2
+R2
+Idda_jnPZ6BW6W<^;U610=2
+R3
+S1
+R4
+w1632697187
+8D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA.sv
+FD:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA.sv
+!i122 32
+L0 1 45
+R6
+r1
+!s85 0
+31
+!s108 1632697193.000000
+!s107 D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA.sv|
+!i113 1
+R8
+R9
+nmem@a
+vmemA_tb
+R0
+DXx4 work 15 memA_tb_sv_unit 0 22 >aRzobf<F?Lhjg7e`O6a00
+Z11 !s110 1632697093
+R3
+r1
+!s85 0
+!i10b 1
+!s100 T_V5:lKZPnmbb<]_ikUgM1
+Iz44GBYa:``A4PNkF;8fhN3
+!s105 memA_tb_sv_unit
+S1
+R4
+Z12 w1632697079
+Z13 8D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb.sv
+Z14 FD:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb.sv
+!i122 31
+L0 6 107
+R6
+31
+Z15 !s108 1632697093.000000
+Z16 !s107 D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memAB_tc.svh|D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb.sv|
+Z17 !s90 -reportprogress|300|-work|work|-sv|-stats=none|D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb.sv|
+!i113 1
+R8
+R9
+nmem@a_tb
+XmemA_tb_sv_unit
+R0
+R11
+V>aRzobf<F?Lhjg7e`O6a00
+r1
+!s85 0
+!i10b 1
+!s100 J@RL:8YSY^19[IA@@_D200
+I>aRzobf<F?Lhjg7e`O6a00
+!i103 1
+S1
+R4
+R12
+R13
+R14
+FD:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memAB_tc.svh
+!i122 31
+Z18 L0 4 0
+R6
+31
+R15
+R16
+R17
+!i113 1
+R8
+R9
+nmem@a_tb_sv_unit
+vmemA_tb_tmp
+R0
+R10
+!i10b 1
+!s100 >Q5mdZbmQ9CXh2EEJb5622
+R2
+I2EXMdKic>jIaQTZaeUdX;0
+R3
+S1
+R4
+w1632696315
+8D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb_tmp.sv
+FD:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb_tmp.sv
+!i122 22
+L0 3 41
+R6
+r1
+!s85 0
+31
+Z19 !s108 1632696333.000000
+!s107 D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb_tmp.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\memA_tb_tmp.sv|
+!i113 1
+R8
+R9
+nmem@a_tb_tmp
+XmemAB_tc_svh_unit
+R0
+R10
+VmMSoznDHP@E;DM8XjgZ930
+r1
+!s85 0
+!i10b 1
+!s100 l2cCA?=]PbFoz?Ni]@X:K0
+ImMSoznDHP@E;DM8XjgZ930
+!i103 1
+S1
+R4
+w1632686664
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/memAB_tc.svh
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/memAB_tc.svh
+!i122 23
+R18
+R6
+31
+R19
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/memAB_tc.svh|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/memAB_tc.svh|
+!i113 1
+R8
+R9
+nmem@a@b_tc_svh_unit
+vsystolic_array
+R0
+R10
+!i10b 1
+!s100 zjdzTk8nzVLL2R7ST<JEz3
+R2
+ISif8T>g>WiH6fhKY4SnR_1
+R3
+S1
+R4
+w1632598569
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array.sv
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array.sv
+!i122 24
+L0 6 53
+R6
+r1
+!s85 0
+31
+R19
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array.sv|
+!i113 1
+R8
+R9
+vsystolic_array_tb
+R0
+DXx4 work 25 systolic_array_tb_sv_unit 0 22 RD?=6ZEQ=D3S@me_@hlkj2
+R10
+R3
+r1
+!s85 0
+!i10b 1
+!s100 B2fU3f[EFF_TKjU9HgVXZ1
+I]B_HE0QISK93fA;g<_0=S3
+!s105 systolic_array_tb_sv_unit
+S1
+R4
+R5
+Z20 8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tb.sv
+Z21 FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tb.sv
+!i122 25
+L0 5 157
+R6
+31
+R19
+Z22 !s107 D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\systolic_array_tc.svh|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tb.sv|
+Z23 !s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tb.sv|
+!i113 1
+R8
+R9
+Xsystolic_array_tb_sv_unit
+R0
+R10
+VRD?=6ZEQ=D3S@me_@hlkj2
+r1
+!s85 0
+!i10b 1
+!s100 0amH2P<?PBI3>X;_<LfUb3
+IRD?=6ZEQ=D3S@me_@hlkj2
+!i103 1
+S1
+R4
+R5
+R20
+R21
+FD:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\systolic_array_tc.svh
+!i122 25
+Z24 L0 3 0
+R6
+31
+R19
+R22
+R23
+!i113 1
+R8
+R9
+Xsystolic_array_tc_svh_unit
+R0
+R10
+VB^=50j_nBYP7T`RX0fR9<1
+r1
+!s85 0
+!i10b 1
+!s100 <W]jk^b0E5D;X4enaL<f<1
+IB^=50j_nBYP7T`RX0fR9<1
+!i103 1
+S1
+R4
+R5
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tc.svh
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tc.svh
+!i122 26
+R24
+R6
+31
+R19
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tc.svh|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/systolic_array_tc.svh|
+!i113 1
+R8
+R9
+vtpumac
+R0
+R10
+!i10b 1
+!s100 P:TelX`Y0?Bb3?DcOh]nc0
+R2
+I:1mN?X8@[>JJzoG@nEUM=1
+R3
+S1
+R4
+R5
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac.sv
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac.sv
+!i122 27
+L0 3 32
+R6
+r1
+!s85 0
+31
+R19
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac.sv|
+!i113 1
+R8
+R9
+vtpumac_tb
+R0
+R10
+!i10b 1
+!s100 KN7eOheU@j=6T02:P3=;10
+R2
+IWhHojdAORG9>?`PeoEl`[1
+R3
+S1
+R4
+R5
+8D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac_tb.sv
+FD:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac_tb.sv
+!i122 28
+L0 2 66
+R6
+r1
+!s85 0
+31
+R19
+!s107 D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Documents/Modelsim/ECE554Minilab/ccip_mmio/hw/tpumac_tb.sv|
+!i113 1
+R8
+R9
+vtranspose_fifo
+R0
+R10
+!i10b 1
+!s100 _V^>LKjS<Szz8gCn_;NMk2
+R2
+IOZDK<fk6`S7k5F3<MGB_n3
+R3
+S1
+R4
+w1632696206
+8D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\transpose_fifo.sv
+FD:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\transpose_fifo.sv
+!i122 29
+L0 3 35
+R6
+r1
+!s85 0
+31
+R19
+!s107 D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\transpose_fifo.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:\Documents\Modelsim\ECE554Minilab\ccip_mmio\hw\transpose_fifo.sv|
+!i113 1
+R8
+R9

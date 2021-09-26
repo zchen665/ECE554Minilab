@@ -58,7 +58,7 @@ module memA_tb();
         @(negedge clk) rst_n = 1;
 
         // Check A has been reset
-        @(negedge clk);
+        @(negedge clk)
         for(int rowcol=0;rowcol<DIM;++rowcol) begin
             if(Aout[rowcol] != 0) begin
                 $display("Error! Reset was not conducted properly. Expected: 0, Got: %4d for Row %4d", Aout[rowcol], rowcol);
@@ -68,7 +68,6 @@ module memA_tb();
         for(int test = 0; test < TESTS; ++test) begin
             // instantiate test case
             satc = new();
-            en = 0;
 
             @(posedge clk);
             // Fill Ain
@@ -88,7 +87,6 @@ module memA_tb();
             satc.dumpA();
             for(int cyc=0;cyc<(DIM*3-2);++cyc) begin
             // test Aout from get_next_A
-	    @(posedge clk)
                 for(int rowcol=0;rowcol<DIM;++rowcol) begin
                     if(Aout[rowcol] != satc.get_next_A(rowcol)) begin
                         errors++;
@@ -99,7 +97,7 @@ module memA_tb();
                     $display("Errors detected! Terminate test!");
                     $stop;
                 end
-                //@(posedge clk)
+                @(posedge clk)
                 mycycle = satc.next_cycle();
             end
         end

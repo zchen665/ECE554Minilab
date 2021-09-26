@@ -19,17 +19,17 @@ module transpose_fifo
 			data[i] <= 0;
 		end
 	end
-    else if(wr) begin
-        for (i = 0; i < DEPTH; i++) begin
-			data[i] <= row[i];
-		end
-    end
+  else if(wr) begin
+      for (i = 0; i < DEPTH; i++) begin
+        data[i] <= row[i];
+      end
+  end
 	else if(en) begin
-		for (i = 0; i < DEPTH - 1; i++) begin
-			data[i] <= data[i+1];
-		end
-        data[DEPTH-1] <= 0;
-	end
+      for (i = 0; i < DEPTH - 1; i++) begin
+        data[i] <= data[i+1];
+      end
+          data[DEPTH-1] <= 0;
+	  end
   end
   
   assign q = data[0];
