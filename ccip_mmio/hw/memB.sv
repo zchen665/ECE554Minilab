@@ -10,13 +10,13 @@ module memB
     );
 	
     logic signed [BITS_AB-1:0] Btmp [DIM-1:0];
-	integer cnt;
+	logic cnt;
 	
     // Only for test memB_tb
 	genvar i;
 	generate
 		for(i=0; i<DIM; ++i) begin
-			fifo #(DIM,BITS_AB) fifo_memB(
+			fifo #(DIM+i,BITS_AB) fifo_memB(
 				.clk(clk),
 				.rst_n(rst_n),
 				.en(en),
@@ -25,7 +25,7 @@ module memB
 			);
 		end
 	endgenerate
-	
+/* 	
 	always @(posedge clk, negedge rst_n) begin
 		if(!rst_n)
 			cnt <= 0;
@@ -39,6 +39,6 @@ module memB
 		for (int k=1; k<DIM; ++k) begin
 			Bout[k] = (cnt >= k) ? Btmp[k] : 0; // TODO
 		end
-	end
+	end */
 	
 endmodule
