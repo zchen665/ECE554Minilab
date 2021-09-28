@@ -8,7 +8,10 @@ module memB
     input signed [BITS_AB-1:0] Bin [DIM-1:0],
     output signed [BITS_AB-1:0] Bout [DIM-1:0]
     );
-    
+	
+    logic signed [BITS_AB-1:0] Btmp [DIM-1:0];
+	integer cnt;
+	
     // Only for test memB_tb
 	genvar i;
 	generate
@@ -18,8 +21,24 @@ module memB
 				.rst_n(rst_n),
 				.en(en),
 				.d(Bin[i]),
-				.q(Bout[i])
+				.q(Btmp[i])
 			);
 		end
 	endgenerate
+	
+	always @(posedge clk, negedge rst_n) begin
+		if(!rst_n)
+			cnt <= 0;
+		else
+			cnt <= cnt + 1;
+	end
+	
+	// parallelogram shift
+	always_comb begin
+		Bout[0] = Btmp[0];
+		for (int k=1; k<DIM; ++k) begin
+			Bout[k] = (cnt >= k) ? Btmp[k] : 0; // TODO
+		end
+	end
+	
 endmodule
