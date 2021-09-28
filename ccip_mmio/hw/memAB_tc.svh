@@ -111,4 +111,16 @@ class memAB_tc #(parameter BITS_AB=8,
       end // for (int Row=0;Row<DIM;++Row)
    endfunction: dumpA // dump
    
+   function void dumpB();
+      // display A,B,C for debugging purposes
+      $display("B:");
+      for(int Row=0;Row<DIM;++Row) begin
+         $write(" ");
+         for(int Col=0;Col<DIM;++Col) begin
+            $write("%4d ",B[Row][Col]);
+         end
+         $write("\n");
+      end // for (int Row=0;Row<DIM;++Row)
+   endfunction: dumpB // dump
+
 endclass; // systolic_array_tc

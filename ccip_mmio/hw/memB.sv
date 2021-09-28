@@ -8,3 +8,12 @@ module memB
     input signed [BITS_AB-1:0] Bin [DIM-1:0],
     output signed [BITS_AB-1:0] Bout [DIM-1:0]
     );
+    
+    // Only for test memB_tb
+    genvar i;
+    generate
+    for(i = 0; i < DIM; i++) begin
+      assign Bout[i] = 0;
+    end
+    endgenerate
+endmodule

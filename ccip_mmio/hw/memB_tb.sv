@@ -1,10 +1,10 @@
-// Testbench for memA
+// memB testbench
 // Jianping Shen
 
 `include "memAB_tc.svh"
 
-module memA_tb();
-    localparam BITS_AB=8;
+module memB_tb();
+localparam BITS_AB=8;
     localparam BITS_C=16;
     localparam DIM=8;
     localparam ROWBITS=$clog2(DIM);
@@ -14,22 +14,18 @@ module memA_tb();
     logic clk;
     logic rst_n;
     logic en;
-    logic WrEn;
-    logic signed [BITS_AB-1: 0] Ain [DIM-1:0];
-    logic [ROWBITS-1: 0] Arow;
-    wire signed [BITS_AB-1: 0] Aout [DIM-1:0];
+    logic signed [BITS_AB-1: 0] Bin [DIM-1:0];
+    wire signed [BITS_AB-1: 0] Bout [DIM-1:0];
     integer mycycle;
     integer errors;
 
 
-    memA DUT(
+    memB DUT(
         .clk(clk),
         .rst_n(rst_n),
         .en(en),
-        .WrEn(WrEn),
-        .Ain(Ain),
-        .Arow(Arow),
-        .Aout(Aout)
+        .Bin(Bin),
+        .Bout(Bout)
     );
 
     memAB_tc #(
@@ -44,12 +40,10 @@ module memA_tb();
         clk = 0;
         rst_n = 1;
         en = 0;
-        WrEn = 0;
-        Arow = 0;
         mycycle = 0;
         errors = 0;
         for(int rowcol=0;rowcol<DIM;++rowcol) begin
-            Ain[rowcol] = {BITS_AB{1'b0}};
+            Bin[rowcol] = {BITS_AB{1'b0}};
         end
 
 
@@ -60,8 +54,8 @@ module memA_tb();
         // Check A has been reset
         @(negedge clk);
         for(int rowcol=0;rowcol<DIM;++rowcol) begin
-            if(Aout[rowcol] != 0) begin
-                $display("Error! Reset was not conducted properly. Expected: 0, Got: %4d for Row %4d", Aout[rowcol], rowcol);
+            if(Bout[rowcol] != 0) begin
+                $display("Error! Reset was not conducted properly. Expected: 0, Got: %4d for Row %4d", Bout[rowcol], rowcol);
             end
         end
 
@@ -71,28 +65,25 @@ module memA_tb();
             en = 0;
 
             @(posedge clk);
-            // Fill Ain
+            // Fill Bin
             for(int row; row < DIM; ++row) begin
                 @(posedge clk);
-                WrEn = 1;
-                Arow = row;
+                en = 1;
                 for(int col; col < DIM; ++col) begin
-                    Ain[col] = satc.A[row][col];
+                    Bin[col] = satc.B[row][col];
                 end
             end
 
             @(posedge clk)
-            WrEn = 0;
-            @(posedge clk)
             en = 1;
-            satc.dumpA();
+            satc.dumpB();
             for(int cyc=0;cyc<(DIM*3-2);++cyc) begin
             // test Aout from get_next_A
-	            @(posedge clk)
+                @(posedge clk)
                 for(int rowcol=0;rowcol<DIM;++rowcol) begin
-                    if(Aout[rowcol] != satc.get_next_A(rowcol)) begin
+                    if(Bout[rowcol] != satc.get_next_B(rowcol)) begin
                         errors++;
-                        $display("ERROR! Aout[%1d] was not conducted properly at cycle %2d. Expected %4d, get %4d.", rowcol, cyc, satc.get_next_A(rowcol), Aout[rowcol]);
+                        $display("ERROR! Bout[%1d] was not conducted properly at cycle %2d. Expected %4d, get %4d.", rowcol, cyc, satc.get_next_B(rowcol), Bout[rowcol]);
                     end
                 end
                 if(errors != 0) begin
@@ -102,11 +93,11 @@ module memA_tb();
                 //@(posedge clk)
                 mycycle = satc.next_cycle();
             end
+            en = 0;
         end
 
         $display("Yahoo! All test pass!");
         $stop;
     end
-
 
 endmodule
