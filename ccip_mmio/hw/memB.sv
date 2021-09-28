@@ -17,7 +17,7 @@ module memB
 				.clk(clk),
 				.rst_n(rst_n),
 				.en(en),
-				.d(Bin),
+				.d(Bin[i]),
 				.q(Bout[i])
 			);
 		end
