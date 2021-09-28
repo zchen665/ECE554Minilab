@@ -10,10 +10,16 @@ module memB
     );
     
     // Only for test memB_tb
-    genvar i;
-    generate
-    for(i = 0; i < DIM; i++) begin
-      assign Bout[i] = 0;
-    end
-    endgenerate
+	genvar i;
+	generate
+		for(i=0; i<DIM; ++i) begin
+			fifo #(DIM,BITS_AB) fifo_memB(
+				.clk(clk),
+				.rst_n(rst_n),
+				.en(en),
+				.d(Bin),
+				.q(Bout[i])
+			);
+		end
+	endgenerate
 endmodule
