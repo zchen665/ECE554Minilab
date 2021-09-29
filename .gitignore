@@ -2,4 +2,5 @@ ccip_mmio/hw/work
 *.mpf
 *.mti
 *.wlf
+*.bak
 /work
