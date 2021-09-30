@@ -17,8 +17,8 @@ module systolic_array
     input [$clog2(DIM)-1:0]    Crow,
     output logic signed [BITS_C-1:0] Cout [DIM-1:0]
 );
-    logic signed [BITS_AB-1:0] Aval [DIM-1:0][DIM-1:0];
-    logic signed [BITS_AB-1:0] Bval [DIM-1:0][DIM-1:0];
+    logic signed [BITS_AB-1:0] Aval [DIM-1:0][DIM:0];
+    logic signed [BITS_AB-1:0] Bval [DIM:0][DIM-1:0];
     logic signed [BITS_C-1:0] Cval [DIM-1:0][DIM-1:0];
     logic [DIM-1:0] WrEnRow;
 
