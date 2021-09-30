@@ -23,6 +23,14 @@ module memA
          .q(Atmp[i])
        );
      end
+     transpose_fifo #(DIM,BITS_AB) T_FIFO(
+         .clk(clk),
+         .rst_n(rst_n),
+         .en(en), // maybe add !WrEn
+         .wr(WrEn & Arow == 0), //select one row to update
+         .row(Ain),
+         .q(Atmp[0])
+       );
    endgenerate
 
    always@(posedge clk, negedge rst_n) begin
