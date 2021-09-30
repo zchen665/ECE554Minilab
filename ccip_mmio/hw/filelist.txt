@@ -5,6 +5,7 @@ ccip_interface_reg.sv
 ccip_std_afu.sv
 fifo.sv
 memA.sv
+transpose_fifo.sv
 memB.sv
 fiforst.sv
 tpumac.sv
