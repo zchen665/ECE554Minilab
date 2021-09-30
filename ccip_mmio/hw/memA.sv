@@ -33,11 +33,11 @@ module memA
        );
    endgenerate
 
-   always@(posedge clk, negedge rst_n, WrEn) begin
+   always@(posedge clk, negedge rst_n) begin
      if (!rst_n) begin
        counter <= 0;
      end
-     if (WrEn) begin
+     else if (WrEn) begin
        counter <=0;
      end
      else if (en) begin
