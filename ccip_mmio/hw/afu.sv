@@ -60,10 +60,25 @@ module afu
    // automatically invoke the OPAE afu_json_mgr script to extract the UUID into a constant 
    // within afu_json_info.vh.
    logic [127:0] afu_id = `AFU_ACCEL_UUID;
+   wire read_cond;
 
    // User register (memory mapped to address h0020) to test MMIO over CCI-P.
-   logic [63:0]  user_reg;
-   
+   logic [63:0] user_reg;
+   logic [63:0] in;
+
+   tpuv1 TPU(
+	.clk(clk),
+	.rst_n(!rst),
+	.r_w(rx.c0.mmioWrValid == 1),
+	.dataIn(in),
+	.addr(mmio_hdr.address),
+	.dataOut(user_reg)
+   );
+
+   assign valid_wr = ((rx.c0.mmioWrValid == 1) & (mmio_hdr.address == 16'h0020));
+
+   assign in = rx.c0.data[63:0]; 
+
    // The Rx c0 header is normally used for responses to reads from the host processor's memory.
    // For MMIO responses (i.e. when c0 mmmioRdValid or mmioWrValid is asserted), we need to 
    // cast the c0 header into a ReqMmmioHdr. Basically, these same header bits in Rx c0 are used 
@@ -74,8 +89,7 @@ module afu
    // =============================================================//   
    // MMIO write code
    // =============================================================// 		    
-   always_ff @(posedge clk or posedge rst)
-     begin 
+/*   always_ff @(posedge rst) begin 
         if (rst)
           begin 
 	     // Asnchronous reset for the memory-mapped register.
@@ -89,25 +103,13 @@ module afu
 		  // Check the address of the write request. If it maches the address of the
 		  // memory-mapped register (h0020), then write the received data on channel c0 
 		  // to the register.
-                  case (mmio_hdr.address)
-                    16'h0020: user_reg <= rx.c0.data[63:0];
-                  endcase
+                //  case (mmio_hdr.address)
+                 //   16'h0020: in <= rx.c0.data[63:0];
+                //  endcase
                end
           end
      end
-
-  logic en;
-  logic [63:0] q_out;
-
-  assign en = rx.c0.mmioWrValid & (mmio_hdr.address == 16'h0020);
-
-  fifo FIFO
-    (.clk(clk),
-    .rst_n(~rst),
-    .en(en),
-    .d(rx.c0.data[63:0]),
-    .q(q_out)
-  );
+     */
 
    // ============================================================= 		    
    // MMIO read code
@@ -140,7 +142,7 @@ module afu
 
 		  // Check the requested read address of the read request and provide the data 
 		  // from the resource mapped to that address.
-                  case (mmio_hdr.address)
+                  casex (mmio_hdr.address)
 		    
 		    // =============================================================
 		    // IMPORTANT: Every AFU must provide the following control status registers 
@@ -174,7 +176,7 @@ module afu
 		    // =============================================================   
 		    
                     // Provide the 64-bit data from the user register mapped to h0020.
-                    16'h0020: tx.c2.data <= q_out;
+                    16'h03xx: tx.c2.data <= user_reg;
 
 		    // If the processor requests an address that is unused, return 0.
                     default:  tx.c2.data <= 64'h0;
