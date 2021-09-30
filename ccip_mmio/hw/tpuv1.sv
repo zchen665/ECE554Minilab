@@ -30,6 +30,7 @@ module tpuv1 #(
     logic [$clog2(DIM)-1:0]     Crow;
     logic [$clog2(DIM)-1:0]     Arow;
 
+/*
     wire signed [BITS_C-1:0]   Check [DIM-1:0];
     wire signed [BITS_AB-1:0]   ACheck [DIM-1:0];
     wire signed [BITS_AB-1:0]   BCheck [DIM-1:0];
@@ -37,7 +38,7 @@ module tpuv1 #(
     assign ACheck = Aout;
     assign BCheck = Bout;
     assign Check = Cin;
-
+*/
     localparam Abase = 16'h0100;
     localparam Bbase = 16'h0200;
     localparam Cbase = 16'h0300;
