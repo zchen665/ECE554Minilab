@@ -3,5 +3,5 @@ ccip_mmio/hw/work
 *.mti
 *.wlf
 *.bak
-
+/synth
 /work
