@@ -124,7 +124,7 @@ module tpuv1 #(
             for(integer i = 0; i<DIM/2; i++) Ccache[i] <= 0;
         end
         else if(C_load) begin
-            for(integer i = 0; i<DIM/2; i++) Ccache[i] <= dataIn[(16*i) +: 16];
+            for(integer i = 0; i<DIM/2; i++) Ccache[i] <= dataIn[(BITS_C*i) +: BITS_C];
         end
     end
 
@@ -134,15 +134,15 @@ module tpuv1 #(
     genvar i;
     generate
         for(i = 0; i<DIM; ++i) begin
-            assign Ain[i] = A_WrEn? dataIn[8*i+7:8*i]: 8'b0;
-            assign Bin[i] = B_WrEn? dataIn[8*i+7:8*i]: 8'b0;
+            assign Ain[i] = A_WrEn? dataIn[BITS_AB*i+7:BITS_AB*i]: 0;
+            assign Bin[i] = B_WrEn? dataIn[BITS_AB*i+7:BITS_AB*i]: 0;
         end
 
         for(i = 0; i<DIM/2; ++i) begin
             // assign Ccache[i+4] = dataIn[(16*i) +: 16];
-            assign Cin[i] = C_WrEn? Ccache[i]: 16'b0;
-            assign Cin[i+4] = C_WrEn? dataIn[(16*i) +: 16]: 16'b0;
-            assign dataOut[(16*i) +: 16] = addr[3]? Cout[i+4]: Cout[i];
+            assign Cin[i] = C_WrEn? Ccache[i]: 0;
+            assign Cin[i+4] = C_WrEn? dataIn[(BITS_C*i) +: BITS_C]: 0;
+            assign dataOut[(BITS_C*i) +: BITS_C] = addr[3]? Cout[i+4]: Cout[i];
         end
     endgenerate
 
