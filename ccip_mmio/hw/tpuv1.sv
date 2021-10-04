@@ -8,12 +8,12 @@ module tpuv1 #(
     parameter DATAW=64
 )
 (
-    input               clk     , 
-    input               rst_n   , 
-    input               r_w     , // r_w=0 read, =1 write
-    input   [DATAW-1:0] dataIn  ,
-    output  logic [DATAW-1:0] dataOut ,
-    input   [ADDRW-1:0] addr
+    input                       clk     , 
+    input                       rst_n   , 
+    input                       r_w     , // r_w=0 read, =1 write
+    input           [DATAW-1:0] dataIn  ,
+    output  logic   [DATAW-1:0] dataOut ,
+    input           [ADDRW-1:0] addr
 );
 
     logic C_WrEn, A_WrEn, B_WrEn, C_load;
