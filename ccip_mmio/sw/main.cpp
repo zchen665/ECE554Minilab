@@ -121,8 +121,11 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 		uint64_t base_mask = 0x0FFFF;
 
 		// TODO: unhardcode 16-bit
-		bitind = (ind / DIM/2);
-		uint64_t shift_count = (ind * DIM*2) % 64;
+		// DIM=16: 16*2B from 16 rows -> 512B
+		// DIM=32: 32*2B from 32 rows -> 2048B
+		// DIM=64: 64*2B from 64 rows -> 8192B
+		bitind = (ind / 4);
+		uint64_t shift_count = (ind * DIM*2) % (DIM*DIM);
 
 		// Mask and store
 		wds[bitind] |= ((vals[ind] & (base_mask)) << shift_count);
@@ -160,8 +163,11 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 		uint64_t base_mask = 0x0FFFF;
 
 		// TODO: unhardcode 16-bit
-		bitind = (ind / DIM/2);
-		uint64_t shift_count = (ind * DIM*2) % 64;
+		// DIM=16: 16*2B from 16 rows -> 512B
+		// DIM=32: 32*2B from 32 rows -> 2048B
+		// DIM=64: 64*2B from 64 rows -> 8192B
+		bitind = (ind / 4);
+		uint64_t shift_count = (ind * DIM*2) % (DIM*DIM);
 
 		// Mask and store
 		vals[ind] = ((wds[bitind] & (base_mask << shift_count)) >> shift_count);
