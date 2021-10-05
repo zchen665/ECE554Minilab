@@ -221,8 +221,8 @@ int main(int argc, char *argv[]) {
 	// Start time
 	gettimeofday(&start, nullptr);
 
-	for (ptrdiff_t i = 0; i <DIM; i += 8){
-		for (ptrdiff_t j = 0; j < DIM; j+=8){
+	for (ptrdiff_t i = 0; i <DIM;){
+		for (ptrdiff_t j = 0; j < DIM;){
 			fprintf(stdout, "Calculate block[%d][%d]\n", i, j);
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				send_row_C(ii, &(output[i+ii][j]),afu);
@@ -253,6 +253,8 @@ int main(int argc, char *argv[]) {
 			}			
 
 		}
+		i = i+8;
+		j = j+8;
 	}
 // 	// Write each value of A down.
 // 	fprintf(stdout, "Loading A into AFU...\n");
