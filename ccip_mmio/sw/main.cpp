@@ -229,7 +229,19 @@ int main(int argc, char *argv[]) {
 					send_row_B(ii, &(B_vals[k+ii][j]),afu);
 				}	
 				afu.write(0x0400, 100);
-						
+				for (ptrdiff_t ii = 0; ii < 8; ii ++){
+					unpack_from_C(ii, &(output[i+ii][j]),afu);
+			  }		
+					fprintf(stdout, "**************CCCCC_actual**************\n");
+				for(int r = 0; r < DIM; ++r)
+				{
+					fprintf(stdout, "\n");
+					for(int c = 0; c < DIM; ++c)
+					{
+						fprintf(stdout, "%d ", output[r][c]);
+					}
+					fflush(stdout);
+				}
 			}
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				unpack_from_C(ii, &(output[i+ii][j]),afu);
