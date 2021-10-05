@@ -243,7 +243,7 @@ int main(int argc, char *argv[]) {
 			for (ptrdiff_t k = 0; k <DIM; k += 8){
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
 					send_row_A(ii, &(A_vals[i+ii][k]),afu);
-					send_row_B(ii, &(B_vals[i+ii][j]),afu);
+					send_row_B(ii, &(B_vals[k+ii][j]),afu);
 				}	
 				afu.write(0x0400, 100);
 			}
