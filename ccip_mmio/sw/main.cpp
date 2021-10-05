@@ -52,7 +52,7 @@ using namespace std;
 
 typedef int8_t AB_TYPE;
 typedef int16_t C_TYPE;
-#define DIM 16
+#define DIM 8
 #define MAX_VAL _UI16_MAX
 #define DEBUG true
 
@@ -229,12 +229,7 @@ int main(int argc, char *argv[]) {
 					send_row_B(ii, &(B_vals[k+ii][j]),afu);
 				}	
 				afu.write(0x0400, 100);
-				for (ptrdiff_t ii = 0; ii < 8; ii ++){
-					unpack_from_C(ii, &(output[i+ii][j]),afu);
-				}
-				for (ptrdiff_t ii = 0; ii < 8; ii ++){
-					send_row_C(ii, &(output[i+ii][j]),afu);
-				}		
+						
 			}
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				unpack_from_C(ii, &(output[i+ii][j]),afu);
