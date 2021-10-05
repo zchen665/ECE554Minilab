@@ -52,7 +52,7 @@ using namespace std;
 
 typedef int8_t AB_TYPE;
 typedef int16_t C_TYPE;
-#define DIM 8
+#define DIM 16
 #define MAX_VAL _UI16_MAX
 #define DEBUG true
 
@@ -122,7 +122,7 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 
 		// TODO: unhardcode 16-bit
 		bitind = (ind / 4);
-		uint64_t shift_count = (ind * 16) % 64;
+		uint64_t shift_count = (ind * DIM*2) % 64;
 
 		// Mask and store
 		wds[bitind] |= ((vals[ind] & (base_mask)) << shift_count);
@@ -161,7 +161,7 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 
 		// TODO: unhardcode 16-bit
 		bitind = (ind / 4);
-		uint64_t shift_count = (ind * 16) % 64;
+		uint64_t shift_count = (ind * DIM*2) % 64;
 
 		// Mask and store
 		vals[ind] = ((wds[bitind] & (base_mask << shift_count)) >> shift_count);
