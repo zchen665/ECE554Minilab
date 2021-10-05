@@ -281,14 +281,55 @@ int main(int argc, char *argv[]) {
 	
 	// Compare.
 	fprintf(stdout, "Calculation finished. Testing values...\n");
+	fprintf(stdout, "**************AAAAAA**************\n");
+	for(int r = 0; r < DIM; ++r)
+	{
+		fprintf(stdout, "\n");
+		for(int c = 0; c < DIM; ++c)
+		{
+			fprintf(stdout, "%d ", A_vals[r][c]);
+		}
+		fflush(stdout);
+	}
+	fprintf(stdout, "**************BBBBBBB**************\n");
+	for(int r = 0; r < DIM; ++r)
+	{
+		fprintf(stdout, "\n");
+		for(int c = 0; c < DIM; ++c)
+		{
+			fprintf(stdout, "%d ", B_vals[r][c]);
+		}
+		fflush(stdout);
+	}
+	fprintf(stdout, "**************CCCCCCC_ref**************\n");
+	for(int r = 0; r < DIM; ++r)
+	{
+		fprintf(stdout, "\n");
+		for(int c = 0; c < DIM; ++c)
+		{
+			fprintf(stdout, "%d ", output_reference[r][c]);
+		}
+		fflush(stdout);
+	}
+	fprintf(stdout, "**************CCCCC_actual**************\n");
+	for(int r = 0; r < DIM; ++r)
+	{
+		fprintf(stdout, "\n");
+		for(int c = 0; c < DIM; ++c)
+		{
+			fprintf(stdout, "%d ", output[r][c]);
+		}
+		fflush(stdout);
+	}
+
 	for(int r = 0; r < DIM; ++r)
 	{
 		for(int c = 0; c < DIM; ++c)
 		{
 			fprintf(stdout, "row: %d, col: %d | got: %hx, expected %hx", r, c, output[r][c], output_reference[r][c]);
 			fflush(stdout);
-			// assert(output[r][c] == output_reference[r][c]);
-			// fprintf(stdout, " [OK]\n");
+			assert(output[r][c] == output_reference[r][c]);
+			fprintf(stdout, " [OK]\n");
 		}
 	}
 
