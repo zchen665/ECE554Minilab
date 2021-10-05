@@ -230,8 +230,8 @@ int main(int argc, char *argv[]) {
 			fprintf(stdout, "Sending A and B.\n");
 			for (ptrdiff_t k = 0; k <DIM; k += 8){
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
-					send_row_A(ii, &(A_vals[0+ii][0]),afu);
-					send_row_B(ii, &(B_vals[0+ii][0]),afu);
+					send_row_A(ii, &(A_vals[i+ii][k]) - 8,afu);
+					send_row_B(ii, &(B_vals[k+ii][j]) - 8,afu);
 				}	
 				afu.write(0x0400, 100);
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
