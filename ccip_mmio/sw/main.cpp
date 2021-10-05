@@ -118,28 +118,21 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 	// Partition the words into their respective rows
 	for(ptrdiff_t ind = 0; ind < 8; ++ind)
 	{
-		// Partition the words into their respective rows
-		for(ptrdiff_t ind = 0; ind < 8; ++ind)
-		{
-			uint64_t base_mask = 0x0FFFF;
+		uint64_t base_mask = 0x0FFFF;
 
-			// TODO: unhardcode 16-bit
-			// DIM=16: 16*2B from 16 rows -> 512B
-			// DIM=32: 32*2B from 32 rows -> 2048B
-			// DIM=64: 64*2B from 64 rows -> 8192B
-			bitind = (ind / 4);
-			uint64_t shift_count = (ind * 16) % 64;
+		// TODO: unhardcode 16-bit
+		bitind = (ind / 4);
+		uint64_t shift_count = (ind * 16) % 64;
 
-			// Mask and store
-			wds[bitind] |= ((vals[ind] & (base_mask)) << shift_count);
-		}
-
-		if(DEBUG)
-			fprintf(stdout, "CWRITE: low word, high word, address %lx | %lx @%lx @%lx\n", wds[0], wds[1], lw_addr, hw_addr);
-
-		afu.write(lw_addr, wds[0]);
-		afu.write(hw_addr, wds[1]);
+		// Mask and store
+		wds[bitind] |= ((vals[ind] & (base_mask)) << shift_count);
 	}
+
+	if(DEBUG)
+		fprintf(stdout, "CWRITE: low word, high word, address %lx | %lx @%lx @%lx\n", wds[0], wds[1], lw_addr, hw_addr);
+
+	afu.write(lw_addr, wds[0]);
+	afu.write(hw_addr, wds[1]);
 }
 
 void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
@@ -160,13 +153,6 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 
 	if(DEBUG)
 		fprintf(stdout, "low word, high word, address %lx | %lx @%lx @%lx\n", wds[0], wds[1], lw_addr, hw_addr);
-	
-	// Tile 8x8 block
-	for(ptrdiff_t block = 0; block < DIM/8; ++block)
-		// Partition the words into their respective rows
-		for(ptrdiff_t ind = 0; ind < DIM; ++ind)
-		{
-			uint64_t base_mask = 0x0FFFF;
 
 	// Partition the words into their respective rows
 	for(ptrdiff_t ind = 0; ind < 8; ++ind)
@@ -174,15 +160,11 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 		uint64_t base_mask = 0x0FFFF;
 
 		// TODO: unhardcode 16-bit
-		// DIM=16: 16*2B from 16 rows -> 512B
-		// DIM=32: 32*2B from 32 rows -> 2048B
-		// DIM=64: 64*2B from 64 rows -> 8192B
 		bitind = (ind / 4);
 		uint64_t shift_count = (ind * 16) % 64;
 
-			// Mask and store
-			vals[ind] = ((wds[bitind] & (base_mask << shift_count + (block*8))) >> shift_count + (block*8));
-		}
+		// Mask and store
+		vals[ind] = ((wds[bitind] & (base_mask << shift_count)) >> shift_count);
 	}
 }
 
@@ -236,10 +218,11 @@ int main(int argc, char *argv[]) {
 
 	for (ptrdiff_t i = 0; i <DIM; i += 8){
 		for (ptrdiff_t j = 0; j < DIM; j+=8){
+			fprintf(stdout, "Calculate block[%d][%d]\n", i, j);
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				send_row_C(ii, &(output[i+ii][j]),afu);
 			}
-
+			fprintf(stdout, "Sending A and B.\n");
 			for (ptrdiff_t k = 0; k <DIM; k += 8){
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
 					send_row_A(ii, &(A_vals[i+ii][k]),afu);
