@@ -221,8 +221,8 @@ int main(int argc, char *argv[]) {
 	// Start time
 	gettimeofday(&start, nullptr);
 
-	for (ptrdiff_t i = 0; i <DIM;){
-		for (ptrdiff_t j = 0; j < DIM;){
+	for (ptrdiff_t i = 0; i <DIM; i += 8){
+		for (ptrdiff_t j = 0; j < DIM; j += 8){
 			fprintf(stdout, "Calculate block[%d][%d]\n", i, j);
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				send_row_C(ii, &(output[i+ii][j]),afu);
@@ -230,8 +230,8 @@ int main(int argc, char *argv[]) {
 			fprintf(stdout, "Sending A and B.\n");
 			for (ptrdiff_t k = 0; k <DIM; k += 8){
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
-					send_row_A(ii, &(A_vals[i+ii][k]),afu);
-					send_row_B(ii, &(B_vals[k+ii][j]),afu);
+					send_row_A(ii, &(A_vals[0+ii][0]),afu);
+					send_row_B(ii, &(B_vals[0+ii][0]),afu);
 				}	
 				afu.write(0x0400, 100);
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
@@ -251,9 +251,7 @@ int main(int argc, char *argv[]) {
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				unpack_from_C(ii, &(output[i+ii][j]),afu);
 			}			
-			j = j+8;
 		}
-		i = i+8;
 	}
 // 	// Write each value of A down.
 // 	fprintf(stdout, "Loading A into AFU...\n");
