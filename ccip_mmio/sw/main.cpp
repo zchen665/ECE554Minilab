@@ -119,7 +119,7 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 	for(ptrdiff_t ind = 0; ind < 8; ++ind)
 	{
 		// Partition the words into their respective rows
-		for(ptrdiff_t ind = 0; ind < DIM; ++ind)
+		for(ptrdiff_t ind = 0; ind < 8; ++ind)
 		{
 			uint64_t base_mask = 0x0FFFF;
 
