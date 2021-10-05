@@ -251,10 +251,9 @@ int main(int argc, char *argv[]) {
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				unpack_from_C(ii, &(output[i+ii][j]),afu);
 			}			
-
+			j = j+8;
 		}
 		i = i+8;
-		j = j+8;
 	}
 // 	// Write each value of A down.
 // 	fprintf(stdout, "Loading A into AFU...\n");
