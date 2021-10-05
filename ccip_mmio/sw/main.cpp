@@ -131,7 +131,7 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 			uint64_t shift_count = (ind * 16) % 64;
 
 			// Mask and store
-			wds[bitind] |= ((vals[ind] & (base_mask)) << shift_count+(block*8));
+			wds[bitind] |= ((vals[ind] & (base_mask)) << shift_count);
 		}
 
 		if(DEBUG)
@@ -237,18 +237,18 @@ int main(int argc, char *argv[]) {
 	for (ptrdiff_t i = 0; i <DIM; i += 8){
 		for (ptrdiff_t j = 0; j < DIM; j+=8){
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
-				send_row_C(ii, output[i+ii][j],afu);
+				send_row_C(ii, &(output[i+ii][j]),afu);
 			}
 
 			for (ptrdiff_t k = 0; k <DIM; k += 8){
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
-					send_row_A(ii, A_vals[i+ii][k],afu);
-					send_row_B(ii, B_vals[i+ii][j],afu);
+					send_row_A(ii, &(A_vals[i+ii][k]),afu);
+					send_row_B(ii, &(B_vals[i+ii][j]),afu);
 				}	
 				afu.write(0x0400, 100);
 			}
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
-				unpack_from_C(ii, output[i+ii][j],afu);
+				unpack_from_C(ii, &(output[i+ii][j]),afu);
 			}			
 
 		}
