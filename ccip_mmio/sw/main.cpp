@@ -192,7 +192,7 @@ int main(int argc, char *argv[]) {
 		{
 			//A_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
 			//B_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
-			if(y_ind == x_ind) A_vals[y_ind][x_ind] = 1;
+			if(y_ind == x_ind) B_vals[y_ind][x_ind] = 1;
 			else B_vals[y_ind][x_ind] = 0;
 			A_vals[y_ind][x_ind] = count;
 			count ++;
