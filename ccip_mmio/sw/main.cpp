@@ -52,7 +52,7 @@ using namespace std;
 
 typedef int8_t AB_TYPE;
 typedef int16_t C_TYPE;
-#define DIM 8
+#define DIM 16
 #define MAX_VAL _UI16_MAX
 #define DEBUG true
 
@@ -116,7 +116,7 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 
 
 	// Partition the words into their respective rows
-	for(ptrdiff_t ind = 0; ind < DIM; ++ind)
+	for(ptrdiff_t ind = 0; ind < 8; ++ind)
 	{
 		uint64_t base_mask = 0x0FFFF;
 
@@ -158,7 +158,7 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 		fprintf(stdout, "low word, high word, address %lx | %lx @%lx @%lx\n", wds[0], wds[1], lw_addr, hw_addr);
 
 	// Partition the words into their respective rows
-	for(ptrdiff_t ind = 0; ind < DIM; ++ind)
+	for(ptrdiff_t ind = 0; ind < 8; ++ind)
 	{
 		uint64_t base_mask = 0x0FFFF;
 
@@ -222,47 +222,66 @@ int main(int argc, char *argv[]) {
 	// Start time
 	gettimeofday(&start, nullptr);
 
-	// Write each value of A down.
-	fprintf(stdout, "Loading A into AFU...\n");
-	for(ptrdiff_t a_r = 0; a_r < DIM; ++a_r)
-	{
-		send_row_A(a_r, A_vals[a_r], afu);
-	}
+	for (int i = 0; i <DIM; i += 8){
+		for (int j = 0; j < DIM; j+=8){
+			for (int ii = 0; ii < 8; ii ++){
+				send_row_C(ii, output[i+ii][j],afu);
+			}
 
-	// Push each value of B.
-	fprintf(stdout, "Loading B into AFU...\n");
-	for(ptrdiff_t b_r = 0; b_r < DIM; ++b_r)
-	{
-		send_row_B(b_r, B_vals[b_r], afu);
+			for (int k = 0; k <DIM; k += 8){
+				for (int ii = 0; ii < 8; ii ++){
+					send_row_A(ii, A_vals[i+ii][k],afu);
+					send_row_B(ii, B_vals[i+ii][j],afu);
+				}	
+				afu.write(0x0400, 100);
+			}
+			for (int ii = 0; ii < 8; ii ++){
+				unpack_from_C(ii, output[i+ii][j],afu);
+			}			
+
+		}
 	}
+// 	// Write each value of A down.
+// 	fprintf(stdout, "Loading A into AFU...\n");
+// 	for(ptrdiff_t a_r = 0; a_r < DIM; ++a_r)
+// 	{
+// 		send_row_A(a_r, A_vals[a_r], afu);
+// 	}
+
+// 	// Push each value of B.
+// 	fprintf(stdout, "Loading B into AFU...\n");
+// 	for(ptrdiff_t b_r = 0; b_r < DIM; ++b_r)
+// 	{
+// 		send_row_B(b_r, B_vals[b_r], afu);
+// 	}
 	
-	// Calculate
-	fprintf(stdout, "Performing Calculation...\n");
-	afu.write(0x0400, 100);
-	// Do we have to sleep?
-//	usleep(1000*1000);
+// 	// Calculate
+// 	fprintf(stdout, "Performing Calculation...\n");
+// 	afu.write(0x0400, 100);
+// 	// Do we have to sleep?
+// //	usleep(1000*1000);
 
-	// Read Values.
-	fprintf(stdout, "Reading Output from C...\n");
+// 	// Read Values.
+// 	fprintf(stdout, "Reading Output from C...\n");
 
-	for(ptrdiff_t c_r = 0; c_r < DIM; ++c_r)
-	{
-		// Start timer before matmul
-		gettimeofday(&start_compute, nullptr);
+// 	for(ptrdiff_t c_r = 0; c_r < DIM; ++c_r)
+// 	{
+// 		// Start timer before matmul
+// 		gettimeofday(&start_compute, nullptr);
 		
-		unpack_from_C(c_r, output[c_r], afu);
+// 		unpack_from_C(c_r, output[c_r], afu);
 		
-		// End timer after matmul
-		gettimeofday(&end_compute, nullptr);
+// 		// End timer after matmul
+// 		gettimeofday(&end_compute, nullptr);
 		
-		total_compute = end_compute.tv_usec - start_compute.tv_usec;
-		fprintf(stdout, "Total compute time: %ld usec\n", total_compute);
-	}
+// 		total_compute = end_compute.tv_usec - start_compute.tv_usec;
+// 		fprintf(stdout, "Total compute time: %ld usec\n", total_compute);
+// 	}
 	
-	// Final time
-	gettimeofday(&end, nullptr);
-	total_time = end.tv_usec - start.tv_usec;
-	fprintf(stdout, "Total time: %ld usec\n", total_time);
+// 	// Final time
+// 	gettimeofday(&end, nullptr);
+// 	total_time = end.tv_usec - start.tv_usec;
+// 	fprintf(stdout, "Total time: %ld usec\n", total_time);
 	
 	// Compare.
 	fprintf(stdout, "Calculation finished. Testing values...\n");
