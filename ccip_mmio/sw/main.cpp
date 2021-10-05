@@ -52,7 +52,7 @@ using namespace std;
 
 typedef int8_t AB_TYPE;
 typedef int16_t C_TYPE;
-#define DIM 16
+#define DIM 8
 #define MAX_VAL _UI16_MAX
 #define DEBUG true
 
@@ -183,7 +183,8 @@ int main(int argc, char *argv[]) {
     AFU afu(AFU_ACCEL_UUID);
 
         // Seed random generator with "now"
-        timeval tv;
+        timeval tv, start, end, start_compute, end_compute;
+		long total_compute, total_time;
 	gettimeofday(&tv, nullptr);
 	srand(tv.tv_usec);
 
@@ -217,6 +218,9 @@ int main(int argc, char *argv[]) {
 	}
 
 	// Now try it with the AFU.
+	
+	// Start time
+	gettimeofday(&start, nullptr);
 
 	// Write each value of A down.
 	fprintf(stdout, "Loading A into AFU...\n");
@@ -231,12 +235,22 @@ int main(int argc, char *argv[]) {
 	{
 		send_row_B(b_r, B_vals[b_r], afu);
 	}
-
+	
+	// Start timer before matmul
+	gettimeofday(&start_compute, nullptr);
+	
 	// Calculate
 	fprintf(stdout, "Performing Calculation...\n");
 	afu.write(0x0400, 100);
 	// Do we have to sleep?
 //	usleep(1000*1000);
+
+	// End timer after matmul
+	gettimeofday(&end_compute, nullptr);
+	
+	total_compute = end_compute.tv_usec - start_compute.tv_usec;
+	
+	fprintf(stdout, "Total compute time: %ld usec", total_compute);
 
 	// Read Values.
 	fprintf(stdout, "Reading Output from C...\n");
@@ -245,7 +259,14 @@ int main(int argc, char *argv[]) {
 	{
 		unpack_from_C(c_r, output[c_r], afu);
 	}
-
+	
+	// Final time
+	gettimeofday(&end, nullptr);
+	
+	total_time = end.tv_usec - start.tv_usec;
+	
+	fprintf(stdout, "Total time: %ld usec", total_time);
+	
 	// Compare.
 	fprintf(stdout, "Calculation finished. Testing values...\n");
 	for(int r = 0; r < DIM; ++r)
