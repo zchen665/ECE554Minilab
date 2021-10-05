@@ -121,7 +121,7 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 		uint64_t base_mask = 0x0FFFF;
 
 		// TODO: unhardcode 16-bit
-		bitind = (ind / 4);
+		bitind = (ind / DIM/2);
 		uint64_t shift_count = (ind * DIM*2) % 64;
 
 		// Mask and store
@@ -160,7 +160,7 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 		uint64_t base_mask = 0x0FFFF;
 
 		// TODO: unhardcode 16-bit
-		bitind = (ind / 4);
+		bitind = (ind / DIM/2);
 		uint64_t shift_count = (ind * DIM*2) % 64;
 
 		// Mask and store
