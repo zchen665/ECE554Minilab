@@ -125,7 +125,7 @@ void send_row_C(uint16_t row, C_TYPE* vals, AFU& afu)
 		// DIM=32: 32*2B from 32 rows -> 2048B
 		// DIM=64: 64*2B from 64 rows -> 8192B
 		bitind = (ind / 4);
-		uint64_t shift_count = (ind * DIM*2) % (DIM*DIM);
+		uint64_t shift_count = (ind * 16) % 64;
 
 		// Mask and store
 		wds[bitind] |= ((vals[ind] & (base_mask)) << shift_count);
@@ -167,7 +167,7 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 		// DIM=32: 32*2B from 32 rows -> 2048B
 		// DIM=64: 64*2B from 64 rows -> 8192B
 		bitind = (ind / 4);
-		uint64_t shift_count = (ind * DIM*2) % (DIM*DIM);
+		uint64_t shift_count = (ind * 16) % 64;
 
 		// Mask and store
 		vals[ind] = ((wds[bitind] & (base_mask << shift_count)) >> shift_count);
@@ -236,36 +236,33 @@ int main(int argc, char *argv[]) {
 		send_row_B(b_r, B_vals[b_r], afu);
 	}
 	
-	// Start timer before matmul
-	gettimeofday(&start_compute, nullptr);
-	
 	// Calculate
 	fprintf(stdout, "Performing Calculation...\n");
 	afu.write(0x0400, 100);
 	// Do we have to sleep?
 //	usleep(1000*1000);
 
-	// End timer after matmul
-	gettimeofday(&end_compute, nullptr);
-	
-	total_compute = end_compute.tv_usec - start_compute.tv_usec;
-	
-	fprintf(stdout, "Total compute time: %ld usec", total_compute);
-
 	// Read Values.
 	fprintf(stdout, "Reading Output from C...\n");
 
 	for(ptrdiff_t c_r = 0; c_r < DIM; ++c_r)
 	{
+		// Start timer before matmul
+		gettimeofday(&start_compute, nullptr);
+		
 		unpack_from_C(c_r, output[c_r], afu);
+		
+		// End timer after matmul
+		gettimeofday(&end_compute, nullptr);
+		
+		total_compute = end_compute.tv_usec - start_compute.tv_usec;
+		fprintf(stdout, "Total compute time: %ld usec\n", total_compute);
 	}
 	
 	// Final time
 	gettimeofday(&end, nullptr);
-	
 	total_time = end.tv_usec - start.tv_usec;
-	
-	fprintf(stdout, "Total time: %ld usec", total_time);
+	fprintf(stdout, "Total time: %ld usec\n", total_time);
 	
 	// Compare.
 	fprintf(stdout, "Calculation finished. Testing values...\n");
