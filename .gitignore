@@ -5,3 +5,5 @@ ccip_mmio/hw/work
 *.bak
 /synth
 /work
+work
+synth

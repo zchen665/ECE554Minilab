@@ -1,0 +1,161 @@
+# //  Questa Sim
+# //  Version 2021.2_2 linux Jun 19 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading project minilabs
+vsim work.memA_tb
+# vsim work.memA_tb 
+# Start time: 16:31:15 on Sep 26,2021
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.memA_tb_sv_unit(fast)
+# Loading work.memA_tb(fast)
+# Loading work.transpose_fifo(fast)
+# Compile of memA.sv was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.memA_tb_sv_unit(fast)
+# Loading work.memA_tb(fast)
+# Loading work.transpose_fifo(fast)
+run
+run
+# A:
+#   -25 -100  -24   22    0   -8   17   -4  
+#   -34 -112  -34 -122  -51   79 -105   30  
+#    44  -98  -78   82   49 -103    2  -31  
+#    47   20   17   72   29  -11 -126  113  
+#    21  126   57   56  -95   24  -72  -31  
+#   -94   13   56  -63   26  -55  -45  -42  
+#    42  -32  -91   63  126  125   24  -30  
+#    51   -4  -67 -119 -127  -83 -108  125  
+# ERROR! Aout[0] was not conducted properly at cycle  1. Expected -100, get  -25.
+# ERROR! Aout[1] was not conducted properly at cycle  1. Expected  -34, get    0.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 145 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  2. Expected  -24, get -100.
+# ERROR! Aout[1] was not conducted properly at cycle  2. Expected -112, get  -34.
+# ERROR! Aout[2] was not conducted properly at cycle  2. Expected   44, get    0.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 155 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  3. Expected   22, get  -24.
+# ERROR! Aout[1] was not conducted properly at cycle  3. Expected  -34, get -112.
+# ERROR! Aout[2] was not conducted properly at cycle  3. Expected  -98, get   44.
+# ERROR! Aout[3] was not conducted properly at cycle  3. Expected   47, get    0.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 165 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+# Compile of memA.sv was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.memA_tb_sv_unit(fast)
+# Loading work.memA_tb(fast)
+# Loading work.transpose_fifo(fast)
+run
+run
+# A:
+#   -25 -100  -24   22    0   -8   17   -4  
+#   -34 -112  -34 -122  -51   79 -105   30  
+#    44  -98  -78   82   49 -103    2  -31  
+#    47   20   17   72   29  -11 -126  113  
+#    21  126   57   56  -95   24  -72  -31  
+#   -94   13   56  -63   26  -55  -45  -42  
+#    42  -32  -91   63  126  125   24  -30  
+#    51   -4  -67 -119 -127  -83 -108  125  
+# ERROR! Aout[0] was not conducted properly at cycle  1. Expected -100, get  -25.
+# ERROR! Aout[1] was not conducted properly at cycle  1. Expected  -34, get    0.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 145 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  2. Expected  -24, get  -25.
+# ERROR! Aout[2] was not conducted properly at cycle  2. Expected   44, get    0.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 155 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  3. Expected   22, get  -25.
+# ERROR! Aout[3] was not conducted properly at cycle  3. Expected   47, get    0.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 165 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+# Compile of memA.sv failed with 4 errors.
+# Compile of memA.sv was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.memA_tb_sv_unit(fast)
+# Loading work.memA_tb(fast)
+# Loading work.transpose_fifo(fast)
+run
+run
+# A:
+#   -25 -100  -24   22    0   -8   17   -4  
+#   -34 -112  -34 -122  -51   79 -105   30  
+#    44  -98  -78   82   49 -103    2  -31  
+#    47   20   17   72   29  -11 -126  113  
+#    21  126   57   56  -95   24  -72  -31  
+#   -94   13   56  -63   26  -55  -45  -42  
+#    42  -32  -91   63  126  125   24  -30  
+#    51   -4  -67 -119 -127  -83 -108  125  
+# ERROR! Aout[1] was not conducted properly at cycle  0. Expected    0, get  -34.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 135 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  1. Expected -100, get  -25.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 145 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  2. Expected  -24, get -100.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 155 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  3. Expected   22, get  -24.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 165 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  4. Expected    0, get   22.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 175 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+run
+# ERROR! Aout[0] was not conducted properly at cycle  5. Expected   -8, get    0.
+# Errors detected! Terminate test!
+# ** Note: $stop    : /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv(98)
+#    Time: 185 ns  Iteration: 1  Instance: /memA_tb
+# Break at /filespace/z/zchen665/ECE554/ECE554Minilab/ccip_mmio/hw/memA_tb.sv line 98
+# End time: 17:07:21 on Sep 26,2021, Elapsed time: 0:36:06
+# Errors: 0, Warnings: 1
