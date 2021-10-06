@@ -54,7 +54,7 @@ using namespace std::chrono;
 
 typedef int8_t AB_TYPE;
 typedef int16_t C_TYPE;
-#define DIM 16
+#define DIM 128
 #define MAX_VAL _UI16_MAX
 #define DEBUG false
 
