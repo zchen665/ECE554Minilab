@@ -85,7 +85,7 @@ template<int base_addr> void send_row_X(uint16_t row, AB_TYPE* vals, AFU& afu)
 	uint64_t data_word = 0;
 
 	// Pack each of the values into single 64-bit word
-	for(int t = 0; t < DIM; ++t)
+	for(int t = 0; t < 8; ++t)
 	{
 		data_word |= ((static_cast<uint64_t>(vals[t]) & 0x0FF) << (t * sizeof(AB_TYPE)*8));
 	}
