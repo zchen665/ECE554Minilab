@@ -182,7 +182,6 @@ int main(int argc, char *argv[]) {
 	
 	double total_compute, total_time;
 	total_compute = 0;
-	srand(tv.tv_usec);
 
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
 	fprintf(stdout, "Populating A and B...\n");
@@ -263,7 +262,7 @@ int main(int argc, char *argv[]) {
 	fprintf(stdout, "All tests passed. No errors detected.\n");
 
 	auto duration = duration_cast<microseconds>(end - start);
-	total_time = duration.count()
+	total_time = duration.count();
 	double ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_time) * 1000.0;
 	double compute_ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_compute) * 1000.0;
 	fprintf(stdout, "Total time: %ld ms, ops rate: %f\n", total_time, ops_rate);
