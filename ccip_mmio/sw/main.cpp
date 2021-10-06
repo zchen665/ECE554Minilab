@@ -177,25 +177,21 @@ int main(int argc, char *argv[]) {
     AFU afu(AFU_ACCEL_UUID);
 
         // Seed random generator with "now"
-        timeval tv, start, end, start_compute, end_compute;
-		long total_compute, total_time;
+	timeval tv, start, end, start_compute, end_compute;
+	long total_compute, total_time;
+	total_compute = 0;
 	gettimeofday(&tv, nullptr);
 	srand(tv.tv_usec);
 
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
 	fprintf(stdout, "Populating A and B...\n");
 	// Generate A vals, B vals.
-	//int count = 0;
 	for(int y_ind = 0; y_ind < DIM; ++y_ind)
 	{
 		for(int x_ind = 0; x_ind < DIM; ++x_ind)
 		{
 			A_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
 			B_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
-			//if(y_ind == x_ind) B_vals[y_ind][x_ind] = 1;
-			//else B_vals[y_ind][x_ind] = 0;
-			//A_vals[y_ind][x_ind] = count;
-			//count ++;
 		}
 	}
 
@@ -223,17 +219,21 @@ int main(int argc, char *argv[]) {
 
 	for (ptrdiff_t i = 0; i <DIM; i += 8){
 		for (ptrdiff_t j = 0; j < DIM; j += 8){
-			fprintf(stdout, "Calculate block[%d][%d]\n", i, j);
+			// fprintf(stdout, "Calculate block[%d][%d]\n", i, j);
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				send_row_C(ii, &(output[i+ii][j]),afu);
 			}
-			fprintf(stdout, "Sending A and B.\n");
+			// fprintf(stdout, "Sending A and B.\n");
 			for (ptrdiff_t k = 0; k <DIM; k += 8){
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
 					send_row_A(ii, A_vals[i+ii] + k,afu);
 					send_row_B(ii, B_vals[k+ii] + j,afu);
 				}	
+				gettimeofday(&start_compute, nullptr);
 				afu.write(0x0400, 100);
+				gettimeofday(&end_compute, nullptr);
+				total_compute += end_compute.tv_usec - start_compute.tv_usec;
+
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
 					unpack_from_C(ii, &(output[i+ii][j]),afu);
 			  }		
@@ -243,91 +243,16 @@ int main(int argc, char *argv[]) {
 			}			
 		}
 	}
-// 	// Write each value of A down.
-// 	fprintf(stdout, "Loading A into AFU...\n");
-// 	for(ptrdiff_t a_r = 0; a_r < DIM; ++a_r)
-// 	{
-// 		send_row_A(a_r, A_vals[a_r], afu);
-// 	}
-
-// 	// Push each value of B.
-// 	fprintf(stdout, "Loading B into AFU...\n");
-// 	for(ptrdiff_t b_r = 0; b_r < DIM; ++b_r)
-// 	{
-// 		send_row_B(b_r, B_vals[b_r], afu);
-// 	}
 	
-// 	// Calculate
-// 	fprintf(stdout, "Performing Calculation...\n");
-// 	afu.write(0x0400, 100);
-// 	// Do we have to sleep?
-// //	usleep(1000*1000);
-
-// 	// Read Values.
-// 	fprintf(stdout, "Reading Output from C...\n");
-
-// 	for(ptrdiff_t c_r = 0; c_r < DIM; ++c_r)
-// 	{
-// 		// Start timer before matmul
-// 		gettimeofday(&start_compute, nullptr);
-		
-// 		unpack_from_C(c_r, output[c_r], afu);
-		
-// 		// End timer after matmul
-// 		gettimeofday(&end_compute, nullptr);
-		
-// 		total_compute = end_compute.tv_usec - start_compute.tv_usec;
-// 		fprintf(stdout, "Total compute time: %ld usec\n", total_compute);
-// 	}
+	// Final time
+	gettimeofday(&end, nullptr);
+	total_time = end.tv_usec - start.tv_usec;
+	double ops_rate = 2 * DIM *DIM * DIM / total_time;
+	double compute_ops_rate = 2 * DIM *DIM * DIM / total_compute;
+	fprintf(stdout, "Total time: %ld usec, ops rate: %ld\n", total_time, ops_rate);
+	fprintf(stdout, "Total compute time: %ld usec, compute ops rate: %ld\n", total_time, ops_rate);
 	
-// 	// Final time
-// 	gettimeofday(&end, nullptr);
-// 	total_time = end.tv_usec - start.tv_usec;
-// 	fprintf(stdout, "Total time: %ld usec\n", total_time);
 	
-	// Compare.
-	fprintf(stdout, "Calculation finished. Testing values...\n");
-	fprintf(stdout, "\n**************AAAAAA**************\n");
-	for(int r = 0; r < DIM; ++r)
-	{
-		fprintf(stdout, "\n");
-		for(int c = 0; c < DIM; ++c)
-		{
-			fprintf(stdout, "%d ", A_vals[r][c]);
-		}
-		fflush(stdout);
-	}
-	fprintf(stdout, "\n**************BBBBBBB**************\n");
-	for(int r = 0; r < DIM; ++r)
-	{
-		fprintf(stdout, "\n");
-		for(int c = 0; c < DIM; ++c)
-		{
-			fprintf(stdout, "%d ", B_vals[r][c]);
-		}
-		fflush(stdout);
-	}
-	fprintf(stdout, "\n**************CCCCCCC_ref**************\n");
-	for(int r = 0; r < DIM; ++r)
-	{
-		fprintf(stdout, "\n");
-		for(int c = 0; c < DIM; ++c)
-		{
-			fprintf(stdout, "%d ", output_reference[r][c]);
-		}
-		fflush(stdout);
-	}
-	fprintf(stdout, "\n**************CCCCC_actual**************\n");
-	for(int r = 0; r < DIM; ++r)
-	{
-		fprintf(stdout, "\n");
-		for(int c = 0; c < DIM; ++c)
-		{
-			fprintf(stdout, "%d ", output[r][c]);
-		}
-		fflush(stdout);
-	}
-
 	for(int r = 0; r < DIM; ++r)
 	{
 		for(int c = 0; c < DIM; ++c)
