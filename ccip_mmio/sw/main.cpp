@@ -185,17 +185,17 @@ int main(int argc, char *argv[]) {
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
 	fprintf(stdout, "Populating A and B...\n");
 	// Generate A vals, B vals.
-	int count = 0;
+	//int count = 0;
 	for(int y_ind = 0; y_ind < DIM; ++y_ind)
 	{
 		for(int x_ind = 0; x_ind < DIM; ++x_ind)
 		{
-			//A_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
-			//B_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
-			if(y_ind == x_ind) B_vals[y_ind][x_ind] = 1;
-			else B_vals[y_ind][x_ind] = 0;
-			A_vals[y_ind][x_ind] = count;
-			count ++;
+			A_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
+			B_vals[y_ind][x_ind] = static_cast<int8_t>(rand() % 255);
+			//if(y_ind == x_ind) B_vals[y_ind][x_ind] = 1;
+			//else B_vals[y_ind][x_ind] = 0;
+			//A_vals[y_ind][x_ind] = count;
+			//count ++;
 		}
 	}
 
