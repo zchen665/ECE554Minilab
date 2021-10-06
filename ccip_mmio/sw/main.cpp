@@ -233,10 +233,11 @@ int main(int argc, char *argv[]) {
 				auto end_compute = high_resolution_clock::now();
 				auto compute_duration = duration_cast<microseconds>(end_compute - start_compute);
 				total_compute += compute_duration.count();
+				fprintf(stdout, "Total time: %f ms\n", total_compute);
 
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
 					unpack_from_C(ii, &(output[i+ii][j]),afu);
-			  }		
+			  	}		
 			}
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				unpack_from_C(ii, &(output[i+ii][j]),afu);
