@@ -279,8 +279,8 @@ int main(int argc, char *argv[]) {
 	total_time = diff(start,end).tv_nsec;
 	double ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_time) * 1000.0;
 	double compute_ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_compute) * 1000.0;
-	fprintf(stdout, "Total time: %f ns, ops rate: %f top/s\n", total_time, ops_rate);
-	fprintf(stdout, "Total compute time: %f ns, compute ops rate: %f tops/s\n", total_compute, compute_ops_rate);
+	fprintf(stdout, "Total time: %Lf ns, ops rate: %f top/s\n", total_time, ops_rate);
+	fprintf(stdout, "Total compute time: %Lf ns, compute ops rate: %f tops/s\n", total_compute, compute_ops_rate);
 	return 0;    
   }
   // Exception handling for all the runtime errors that can occur within 
