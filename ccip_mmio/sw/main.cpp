@@ -195,7 +195,7 @@ int main(int argc, char *argv[]) {
 
         // Seed random generator with "now"
 	
-	double total_compute, total_time;
+	long double total_compute, total_time;
 	struct timespec start, end, compute_start, compute_end;
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
 	fprintf(stdout, "Populating A and B...\n");
@@ -247,7 +247,7 @@ int main(int argc, char *argv[]) {
 				afu.write(0x0400, 100);
 				clock_gettime(CLOCK_MONOTONIC, &compute_end);
 				
-				total_compute += diff(compute_start, compute_end).tv_nsec;
+				total_compute += compute_end.tv_nsec - compute_start.tv_nsec;
 				// fprintf(stdout, "Total time: %f ms\n", total_compute);
 					
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
@@ -279,8 +279,8 @@ int main(int argc, char *argv[]) {
 	total_time = diff(start,end).tv_nsec;
 	double ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_time) * 1000.0;
 	double compute_ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_compute) * 1000.0;
-	fprintf(stdout, "Total time: %f ms, ops rate: %f\n", total_time, ops_rate);
-	fprintf(stdout, "Total compute time: %f ms, compute ops rate: %f\n", total_compute, compute_ops_rate);
+	fprintf(stdout, "Total time: %f ns, ops rate: %f top/s\n", total_time, ops_rate);
+	fprintf(stdout, "Total compute time: %f ns, compute ops rate: %f tops/s\n", total_compute, compute_ops_rate);
 	return 0;    
   }
   // Exception handling for all the runtime errors that can occur within 
