@@ -230,6 +230,7 @@ int main(int argc, char *argv[]) {
 	
 	// Start time
 	clock_gettime(CLOCK_MONOTONIC, &start);
+	total_compute = 0;
 
 	for (ptrdiff_t i = 0; i <DIM; i += 8){
 		for (ptrdiff_t j = 0; j < DIM; j += 8){
@@ -247,7 +248,7 @@ int main(int argc, char *argv[]) {
 				afu.write(0x0400, 100);
 				clock_gettime(CLOCK_MONOTONIC, &compute_end);
 				
-				total_compute += compute_end.tv_nsec - compute_start.tv_nsec;
+				total_compute += abs(compute_end.tv_nsec - compute_start.tv_nsec);
 				// fprintf(stdout, "Total time: %f ms\n", total_compute);
 					
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
