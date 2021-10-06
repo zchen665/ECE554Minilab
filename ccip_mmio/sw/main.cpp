@@ -195,7 +195,7 @@ int main(int argc, char *argv[]) {
 
         // Seed random generator with "now"
 	
-	long double total_compute, total_time;
+	long total_compute, total_time;
 	struct timespec start, end, compute_start, compute_end;
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
 	fprintf(stdout, "Populating A and B...\n");
