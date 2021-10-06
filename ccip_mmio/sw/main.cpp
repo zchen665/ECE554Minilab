@@ -20,7 +20,7 @@
 // to do the following:
 // 1) request an FPGA with a specific AFU
 // 2) read and write from a memory-mapped register in the FPGA 
-
+#include <algorithm>
 #include <cstdlib>
 #include <iostream>
 #include <cassert>
@@ -182,7 +182,6 @@ int main(int argc, char *argv[]) {
 	auto start, end, start_compute, end_compute;
 	double total_compute, total_time;
 	total_compute = 0;
-	gettimeofday(&tv, nullptr);
 	srand(tv.tv_usec);
 
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
