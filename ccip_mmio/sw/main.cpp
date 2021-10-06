@@ -237,16 +237,6 @@ int main(int argc, char *argv[]) {
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
 					unpack_from_C(ii, &(output[i+ii][j]),afu);
 			  }		
-					fprintf(stdout, "**************CCCCC_actual**************\n");
-				for(int r = 0; r < DIM; ++r)
-				{
-					fprintf(stdout, "\n");
-					for(int c = 0; c < DIM; ++c)
-					{
-						fprintf(stdout, "%d ", output[r][c]);
-					}
-					fflush(stdout);
-				}
 			}
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				unpack_from_C(ii, &(output[i+ii][j]),afu);
@@ -297,7 +287,7 @@ int main(int argc, char *argv[]) {
 	
 	// Compare.
 	fprintf(stdout, "Calculation finished. Testing values...\n");
-	fprintf(stdout, "**************AAAAAA**************\n");
+	fprintf(stdout, "\n**************AAAAAA**************\n");
 	for(int r = 0; r < DIM; ++r)
 	{
 		fprintf(stdout, "\n");
@@ -307,7 +297,7 @@ int main(int argc, char *argv[]) {
 		}
 		fflush(stdout);
 	}
-	fprintf(stdout, "**************BBBBBBB**************\n");
+	fprintf(stdout, "\n**************BBBBBBB**************\n");
 	for(int r = 0; r < DIM; ++r)
 	{
 		fprintf(stdout, "\n");
@@ -317,7 +307,7 @@ int main(int argc, char *argv[]) {
 		}
 		fflush(stdout);
 	}
-	fprintf(stdout, "**************CCCCCCC_ref**************\n");
+	fprintf(stdout, "\n**************CCCCCCC_ref**************\n");
 	for(int r = 0; r < DIM; ++r)
 	{
 		fprintf(stdout, "\n");
@@ -327,7 +317,7 @@ int main(int argc, char *argv[]) {
 		}
 		fflush(stdout);
 	}
-	fprintf(stdout, "**************CCCCC_actual**************\n");
+	fprintf(stdout, "\n**************CCCCC_actual**************\n");
 	for(int r = 0; r < DIM; ++r)
 	{
 		fprintf(stdout, "\n");
