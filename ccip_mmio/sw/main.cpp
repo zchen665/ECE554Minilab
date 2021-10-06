@@ -249,8 +249,8 @@ int main(int argc, char *argv[]) {
 	total_time = end.tv_usec - start.tv_usec;
 	double ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_time) * 1000.0;
 	double compute_ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_compute) * 1000.0;
-	fprintf(stdout, "Total time: %ld ms, ops rate: %ld\n", total_time, ops_rate);
-	fprintf(stdout, "Total compute time: %ld ms, compute ops rate: %ld\n", total_time, ops_rate);
+	fprintf(stdout, "Total time: %ld ms, ops rate: %f\n", total_time, ops_rate);
+	fprintf(stdout, "Total compute time: %ld ms, compute ops rate: %f\n", total_time, ops_rate);
 	
 	
 	for(int r = 0; r < DIM; ++r)
