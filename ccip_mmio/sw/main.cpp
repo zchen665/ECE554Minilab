@@ -181,7 +181,6 @@ int main(int argc, char *argv[]) {
         // Seed random generator with "now"
 	
 	double total_compute, total_time;
-	total_compute = 0;
 
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
 	fprintf(stdout, "Populating A and B...\n");
