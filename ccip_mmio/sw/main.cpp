@@ -29,7 +29,7 @@
 #include <climits>
 #include <unistd.h>
 #include <chrono>
-#include <vector>
+#include <time.h>
 
 #include <opae/utils.h>
 
@@ -170,6 +170,21 @@ void unpack_from_C(uint16_t row, C_TYPE * vals, AFU& afu)
 	}
 }
 
+timespec diff(timespec start, timespec end){
+        timespec temp;
+        if ((end.tv_nsec - start.tv_nsec) < 0) 
+        {
+                temp.tv_sec = end.tv_sec - start.tv_sec - 1;
+                temp.tv_nsec = 1000000000 + end.tv_nsec - start.tv_nsec;
+        } 
+        else 
+        {
+                temp.tv_sec = end.tv_sec - start.tv_sec;
+                temp.tv_nsec = end.tv_nsec - start.tv_nsec;
+        }
+        return temp;
+}
+
 int main(int argc, char *argv[]) {
 
   try {
@@ -181,7 +196,7 @@ int main(int argc, char *argv[]) {
         // Seed random generator with "now"
 	
 	double total_compute, total_time;
-
+	struct timespec start, end, compute_start, compute_end;
 	fprintf(stdout, "FULL SYSTEM TEST\n---------------\n");
 	fprintf(stdout, "Populating A and B...\n");
 	// Generate A vals, B vals.
@@ -214,7 +229,7 @@ int main(int argc, char *argv[]) {
 	// Now try it with the AFU.
 	
 	// Start time
-	auto start =  high_resolution_clock::now();
+	clock_gettime(CLOCK_MONOTONIC, &start);
 
 	for (ptrdiff_t i = 0; i <DIM; i += 8){
 		for (ptrdiff_t j = 0; j < DIM; j += 8){
@@ -228,17 +243,16 @@ int main(int argc, char *argv[]) {
 					send_row_A(ii, A_vals[i+ii] + k,afu);
 					send_row_B(ii, B_vals[k+ii] + j,afu);
 				}	
-				auto start_compute = high_resolution_clock::now();
+				clock_gettime(CLOCK_MONOTONIC, &compute_start);
 				afu.write(0x0400, 100);
+				clock_gettime(CLOCK_MONOTONIC, &compute_end);
 				
+				total_compute += diff(compute_start, compute_end).tv_nsec;
+				// fprintf(stdout, "Total time: %f ms\n", total_compute);
+					
 				for (ptrdiff_t ii = 0; ii < 8; ii ++){
 					unpack_from_C(ii, &(output[i+ii][j]),afu);
-			  	}	
-				auto end_compute = high_resolution_clock::now();
-				auto compute_duration = duration_cast<microseconds>(end_compute - start_compute);
-				total_compute += compute_duration.count();
-				// fprintf(stdout, "Total time: %f ms\n", total_compute);
-	
+			  	}
 			}
 			for (ptrdiff_t ii = 0; ii < 8; ii ++){
 				unpack_from_C(ii, &(output[i+ii][j]),afu);
@@ -247,7 +261,7 @@ int main(int argc, char *argv[]) {
 	}
 	
 	// Final time
-	auto end =  high_resolution_clock::now();
+	clock_gettime(CLOCK_MONOTONIC, &end);
 	
 	for(int r = 0; r < DIM; ++r)
 	{
@@ -262,8 +276,7 @@ int main(int argc, char *argv[]) {
 
 	fprintf(stdout, "All tests passed. No errors detected.\n");
 
-	auto duration = duration_cast<microseconds>(end - start);
-	total_time = duration.count();
+	total_time = diff(start,end).tv_nsec;
 	double ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_time) * 1000.0;
 	double compute_ops_rate = 2.0 * DIM *DIM * DIM / static_cast<double>(total_compute) * 1000.0;
 	fprintf(stdout, "Total time: %f ms, ops rate: %f\n", total_time, ops_rate);
