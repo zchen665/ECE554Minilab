@@ -179,7 +179,7 @@ int main(int argc, char *argv[]) {
     AFU afu(AFU_ACCEL_UUID);
 
         // Seed random generator with "now"
-	auto start, end, start_compute, end_compute;
+	
 	double total_compute, total_time;
 	total_compute = 0;
 	srand(tv.tv_usec);
@@ -216,7 +216,7 @@ int main(int argc, char *argv[]) {
 	// Now try it with the AFU.
 	
 	// Start time
-	start =  high_resolution_clock::now();
+	auto start =  high_resolution_clock::now();
 
 	for (ptrdiff_t i = 0; i <DIM; i += 8){
 		for (ptrdiff_t j = 0; j < DIM; j += 8){
@@ -230,9 +230,9 @@ int main(int argc, char *argv[]) {
 					send_row_A(ii, A_vals[i+ii] + k,afu);
 					send_row_B(ii, B_vals[k+ii] + j,afu);
 				}	
-				start_compute = high_resolution_clock::now();
+				auto start_compute = high_resolution_clock::now();
 				afu.write(0x0400, 100);
-				end_compute = high_resolution_clock::now();
+				auto end_compute = high_resolution_clock::now();
 				auto compute_duration = duration_cast<microseconds>(end_compute - start_compute);
 				total_compute += compute_duration.count();
 
@@ -247,7 +247,7 @@ int main(int argc, char *argv[]) {
 	}
 	
 	// Final time
-	end =  high_resolution_clock::now();
+	auto end =  high_resolution_clock::now();
 	
 	for(int r = 0; r < DIM; ++r)
 	{
